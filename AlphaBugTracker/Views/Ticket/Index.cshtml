@@ -7,32 +7,36 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Index" asp-controller="Project"  >Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
+                Created Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UpdatedDate)
+                Updated Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketTypeId)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketPriorityId)
+               Priority
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketStatusId)
+                Status
             </th>
+            <th>
+                Project
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -61,9 +65,10 @@
                 @Html.DisplayFor(modelItem => item.TicketStatusId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Project.Name)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }

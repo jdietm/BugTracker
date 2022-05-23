@@ -34,18 +34,22 @@ namespace AlphaBugTracker.Controllers
         // GET: TicketController
         public ActionResult Index()
         {
+
             return View(ticketBL.ListTickets_ByDefault());
         }
 
         // GET: TicketController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ViewBag.TicketId = id;
+            return View(ticketBL.Get(id));
         }
 
         // GET: TicketController/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.ProjectId = id;    
+
             // Types
             List<SelectListItem> types = new List<SelectListItem>
             {
@@ -80,7 +84,7 @@ namespace AlphaBugTracker.Controllers
         // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(IFormCollection collection)
+        public async Task<ActionResult> Create(IFormCollection collection, int projectId)
         {
             string currUserName = User.Identity.Name;
             IdentityUser currUser = await _userManager.FindByNameAsync(currUserName);
@@ -95,8 +99,9 @@ namespace AlphaBugTracker.Controllers
             ticket.TicketStatusId = (TicketStatus)Enum.Parse(typeof(TicketStatus), collection["TicketStatusId"].ToString());
             ticket.OwnerUser = currUser;
 
+
             
-            ticket.Project = projectBL.GetProjectById(p=> p.Id == 1);
+            ticket.Project = projectBL.GetProjectById(p=> p.Id == projectId);
 
 
 

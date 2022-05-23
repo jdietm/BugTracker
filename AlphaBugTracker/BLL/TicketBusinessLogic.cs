@@ -17,6 +17,11 @@ namespace AlphaBugTracker.BLL
             return repo.GetList(t => true).ToList();
         }
 
+        public Ticket Get(int id)
+        {
+            return repo.Get(t => t.Id ==id);
+        }
+
         public void AddTicket(Ticket ticket)
         {
             repo.Create(ticket);

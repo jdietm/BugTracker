@@ -36,8 +36,6 @@ namespace AlphaBugTracker.DAL
             {
 
                 Project = _context.Project.Where(whereFunction).ToList();
-                //.Include(p => p.Project)
-
             }
             return Project;
         }

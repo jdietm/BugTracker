@@ -25,7 +25,9 @@ namespace AlphaBugTracker.DAL
 
         public Ticket? Get(Func<Ticket, bool>? firstFunction)
         {
-            throw new NotImplementedException();
+            Ticket ticket = _context.Ticket.Where(firstFunction).First();
+
+            return ticket;
         }
 
         public ICollection<Ticket>? GetList(Func<Ticket, bool>? whereFunction)
@@ -34,8 +36,7 @@ namespace AlphaBugTracker.DAL
             if (whereFunction != null)
             {
 
-                Ticket = _context.Ticket.Where(whereFunction).ToList();
-                //.Include(p => p.Project)
+                Ticket = _context.Ticket.Include(p => p.Project).Where(whereFunction).ToList();
 
             }
             return Ticket;

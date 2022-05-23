@@ -1,0 +1,179 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\AlphaBugTracker\\AlphaBugTracker_UnitTest\\AlphaBugTracker_UnitTest.csproj": {}
+  },
+  "projects": {
+    "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
+        "projectName": "AlphaBugTracker",
+        "projectPath": "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
+        "packagesPath": "C:\\Users\\jdiet\\.nuget\\packages\\",
+        "outputPath": "D:\\AlphaBugTracker\\AlphaBugTracker\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jdiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameWorkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\AlphaBugTracker\\AlphaBugTracker_UnitTest\\AlphaBugTracker_UnitTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AlphaBugTracker\\AlphaBugTracker_UnitTest\\AlphaBugTracker_UnitTest.csproj",
+        "projectName": "AlphaBugTracker_UnitTest",
+        "projectPath": "D:\\AlphaBugTracker\\AlphaBugTracker_UnitTest\\AlphaBugTracker_UnitTest.csproj",
+        "packagesPath": "C:\\Users\\jdiet\\.nuget\\packages\\",
+        "outputPath": "D:\\AlphaBugTracker\\AlphaBugTracker_UnitTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jdiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj": {
+                "projectPath": "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.11.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
