@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AlphaBugTracker.Models
 {
@@ -14,8 +15,10 @@ namespace AlphaBugTracker.Models
         public TicketTypeCheck TicketTypeId { get; set; }
         public TicketPriorityLevel TicketPriorityId { get; set; }
         public TicketStatus TicketStatusId { get; set; }
-        public IdentityUser OwnerUser { get; set; }
-        public IdentityUser AssignedToUser { get; set; }
+        [NotMapped]
+        public Users OwnerUser { get; set; }
+        [NotMapped]
+        public Users AssignedToUser { get; set; }
 
     }
 }

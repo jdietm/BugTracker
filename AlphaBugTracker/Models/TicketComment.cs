@@ -9,7 +9,7 @@ namespace AlphaBugTracker.Models
         public Ticket Ticket;
         public string Comment { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public IdentityUser UserCreator { get; set; }   
+        public Users UserCreator { get; set; }   
 
     }
 }

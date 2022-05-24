@@ -13,8 +13,8 @@ namespace AlphaBugTracker.Models
         public TicketTypeCheck TicketTypeId { get; set; }
         public TicketPriorityLevel TicketPriorityId { get; set; }
         public TicketStatus TicketStatusId { get; set; }
-        public IdentityUser OwnerUser { get; set; }
-        public IdentityUser AssignedToUser { get; set; }
+        public Users OwnerUser { get; set; }
+        public Users AssignedToUser { get; set; }
 
 
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }

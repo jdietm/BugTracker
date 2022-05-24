@@ -6,6 +6,6 @@ namespace AlphaBugTracker.Models
     {
         public int Id { get; set; }
         public Project  Project;
-        public IdentityUser UserMember;
+        public Users UserMember;
     }
 }

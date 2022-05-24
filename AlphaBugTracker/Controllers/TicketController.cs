@@ -11,7 +11,7 @@ namespace AlphaBugTracker.Controllers
 {
     public class TicketController : Controller
     {
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<Users> _userManager;
         private RoleManager<IdentityRole> _roleManager;
 
         private readonly ApplicationDbContext _globalContext;
@@ -20,7 +20,7 @@ namespace AlphaBugTracker.Controllers
 
 
 
-        public TicketController(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public TicketController(ApplicationDbContext _context, UserManager<Users> userManager, RoleManager<IdentityRole> roleManager)
         {
             ticketBL = new TicketBusinessLogic(new TicketRepository(_context));
             projectBL = new ProjectBusinessLogic(new ProjectRepository(_context));
@@ -87,7 +87,7 @@ namespace AlphaBugTracker.Controllers
         public async Task<ActionResult> Create(IFormCollection collection, int projectId)
         {
             string currUserName = User.Identity.Name;
-            IdentityUser currUser = await _userManager.FindByNameAsync(currUserName);
+            Users currUser = await _userManager.FindByNameAsync(currUserName);
 
 
             Ticket ticket = new Ticket();
