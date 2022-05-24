@@ -10,7 +10,7 @@ namespace AlphaBugTracker.Controllers
 {
     public class CommentController : Controller
     {
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<Users> _userManager;
         private RoleManager<IdentityRole> _roleManager;
 
         private readonly ApplicationDbContext _globalContext;
@@ -18,7 +18,7 @@ namespace AlphaBugTracker.Controllers
         private TicketBusinessLogic ticketBL;
 
 
-        public CommentController(ApplicationDbContext _context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public CommentController(ApplicationDbContext _context, UserManager<Users> userManager, RoleManager<IdentityRole> roleManager)
         {
             commentBL = new CommentBusinessLogic(new CommentRepository(_context));
             ticketBL = new TicketBusinessLogic(new TicketRepository(_context));
@@ -56,7 +56,7 @@ namespace AlphaBugTracker.Controllers
         public async Task<ActionResult> Create(IFormCollection collection, int id)
         {
             string currUserName = User.Identity.Name;
-            IdentityUser currUser = await _userManager.FindByNameAsync(currUserName);
+            Users currUser = await _userManager.FindByNameAsync(currUserName);
             TicketComment ticketComment = new TicketComment();
             
             ticketComment.Comment = collection["Comment"].ToString();

@@ -10067,19 +10067,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jdiet\\.nuget\\packages\\": {}
+    "C:\\Users\\ambuo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
+      "projectUniqueName": "C:\\Users\\ambuo\\Source\\Repos\\BugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
       "projectName": "AlphaBugTracker",
-      "projectPath": "D:\\AlphaBugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
-      "packagesPath": "C:\\Users\\jdiet\\.nuget\\packages\\",
-      "outputPath": "D:\\AlphaBugTracker\\AlphaBugTracker\\obj\\",
+      "projectPath": "C:\\Users\\ambuo\\Source\\Repos\\BugTracker\\AlphaBugTracker\\AlphaBugTracker.csproj",
+      "packagesPath": "C:\\Users\\ambuo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ambuo\\Source\\Repos\\BugTracker\\AlphaBugTracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jdiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ambuo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10160,7 +10160,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

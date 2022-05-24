@@ -17,5 +17,6 @@ namespace AlphaBugTracker.Data
         public DbSet<TicketAttachment> TicketAttachment { get; set; }
         public DbSet<TicketComment> TicketComment { get; set; }
         public DbSet<TicketHistory> TicketHistory { get; set; }
+        public DbSet<Users> Users { get; set; } 
     }
 }

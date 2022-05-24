@@ -10,7 +10,7 @@ namespace AlphaBugTracker.Models
         {
             var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<Users>>();
 
             List<string> roles = new List<string>()
             {
@@ -31,7 +31,7 @@ namespace AlphaBugTracker.Models
 
             if (!context.Users.Any())
             {
-                IdentityUser adminUser = new IdentityUser
+                Users adminUser = new Users
                 {
                     Email = "Admin@gmail.com",
                     NormalizedEmail = "ADMIN@GMAIL.COM",
@@ -40,7 +40,7 @@ namespace AlphaBugTracker.Models
                     EmailConfirmed = true,
                 };
 
-                IdentityUser projectManager = new IdentityUser
+                Users projectManager = new Users
                 {
                     Email = "ProjectManager@mitt.ca",
                     NormalizedEmail = "PROJECTMANAGER@MITT.CA",
@@ -49,7 +49,7 @@ namespace AlphaBugTracker.Models
                     EmailConfirmed = true,
                 };
 
-                IdentityUser developer1 = new IdentityUser
+                Users developer1 = new Users
                 {
                     Email = "Developer1@mitt.ca",
                     NormalizedEmail = "DEVELOPER1@MITT.CA",
@@ -58,7 +58,7 @@ namespace AlphaBugTracker.Models
                     EmailConfirmed = true,
                 };
 
-                IdentityUser developer2 = new IdentityUser
+                Users developer2 = new Users
                 {
                     Email = "Developer2@mitt.ca",
                     NormalizedEmail = "DEVELOPER2@MITT.CA",
@@ -66,8 +66,16 @@ namespace AlphaBugTracker.Models
                     NormalizedUserName = "DEVELOPER2@MITT.CA",
                     EmailConfirmed = true,
                 };
+                Users guest = new Users
+                {
+                    Email = "guest@gmail.com",
+                    NormalizedEmail = "GUEST@GMAIL.COM",
+                    UserName = "guest@gmail.com",
+                    NormalizedUserName = "GUEST@GMAIL.COM",
+                    EmailConfirmed = true,
+                };
 
-                var password = new PasswordHasher<IdentityUser>();
+                var password = new PasswordHasher<Users>();
 
                 var hashed = password.HashPassword(adminUser, "P@ssword1");
                 adminUser.PasswordHash = hashed;
@@ -93,11 +101,14 @@ namespace AlphaBugTracker.Models
                 await userManager.CreateAsync(developer2);
                 await userManager.AddToRoleAsync(developer2, "Developer");
 
+                var guestAdmin = password.HashPassword(guest, "");
+                guest.PasswordHash = guestAdmin;
+                await userManager.CreateAsync(guest);
+                await userManager.AddToRoleAsync(guest, "admin");
+
             }
 
             await context.SaveChangesAsync();
         }
     }
-
-
 }

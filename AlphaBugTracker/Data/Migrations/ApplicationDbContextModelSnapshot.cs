@@ -50,9 +50,14 @@ namespace AlphaBugTracker.Data.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("ProjectUser");
                 });
@@ -184,18 +189,12 @@ namespace AlphaBugTracker.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AssignedToUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OwnerUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -219,15 +218,16 @@ namespace AlphaBugTracker.Data.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignedToUserId");
-
-                    b.HasIndex("OwnerUserId");
 
                     b.HasIndex("ProjectId");
 
                     b.HasIndex("TicketId");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("TicketHistory");
                 });
@@ -296,6 +296,10 @@ namespace AlphaBugTracker.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -347,6 +351,8 @@ namespace AlphaBugTracker.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -434,21 +440,32 @@ namespace AlphaBugTracker.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AlphaBugTracker.Models.Users", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("Users");
+                });
+
             modelBuilder.Entity("AlphaBugTracker.Models.ProjectUser", b =>
                 {
                     b.HasOne("AlphaBugTracker.Models.Project", null)
                         .WithMany("ProjectUsers")
                         .HasForeignKey("ProjectId");
+
+                    b.HasOne("AlphaBugTracker.Models.Users", null)
+                        .WithMany("ProjectUsers")
+                        .HasForeignKey("UsersId");
                 });
 
             modelBuilder.Entity("AlphaBugTracker.Models.Ticket", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AssignedToUser")
-                        .WithMany()
+                    b.HasOne("AlphaBugTracker.Models.Users", "AssignedToUser")
+                        .WithMany("AssignedTickets")
                         .HasForeignKey("AssignedToUserId");
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "OwnerUser")
-                        .WithMany()
+                    b.HasOne("AlphaBugTracker.Models.Users", "OwnerUser")
+                        .WithMany("OwnedTickets")
                         .HasForeignKey("OwnerUserId");
 
                     b.HasOne("AlphaBugTracker.Models.Project", "Project")
@@ -470,8 +487,8 @@ namespace AlphaBugTracker.Data.Migrations
                         .WithMany("TicketAttachments")
                         .HasForeignKey("TicketId");
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserCreator")
-                        .WithMany()
+                    b.HasOne("AlphaBugTracker.Models.Users", "UserCreator")
+                        .WithMany("TicketAttachments")
                         .HasForeignKey("UserCreatorId");
 
                     b.Navigation("UserCreator");
@@ -483,8 +500,8 @@ namespace AlphaBugTracker.Data.Migrations
                         .WithMany("TicketComments")
                         .HasForeignKey("TicketId");
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserCreator")
-                        .WithMany()
+                    b.HasOne("AlphaBugTracker.Models.Users", "UserCreator")
+                        .WithMany("TicketComments")
                         .HasForeignKey("UserCreatorId");
 
                     b.Navigation("UserCreator");
@@ -492,14 +509,6 @@ namespace AlphaBugTracker.Data.Migrations
 
             modelBuilder.Entity("AlphaBugTracker.Models.TicketHistory", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AssignedToUser")
-                        .WithMany()
-                        .HasForeignKey("AssignedToUserId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "OwnerUser")
-                        .WithMany()
-                        .HasForeignKey("OwnerUserId");
-
                     b.HasOne("AlphaBugTracker.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
@@ -510,9 +519,9 @@ namespace AlphaBugTracker.Data.Migrations
                         .WithMany("TicketHistories")
                         .HasForeignKey("TicketId");
 
-                    b.Navigation("AssignedToUser");
-
-                    b.Navigation("OwnerUser");
+                    b.HasOne("AlphaBugTracker.Models.Users", null)
+                        .WithMany("TicketHistories")
+                        .HasForeignKey("UsersId");
 
                     b.Navigation("Project");
                 });
@@ -577,6 +586,21 @@ namespace AlphaBugTracker.Data.Migrations
 
             modelBuilder.Entity("AlphaBugTracker.Models.Ticket", b =>
                 {
+                    b.Navigation("TicketAttachments");
+
+                    b.Navigation("TicketComments");
+
+                    b.Navigation("TicketHistories");
+                });
+
+            modelBuilder.Entity("AlphaBugTracker.Models.Users", b =>
+                {
+                    b.Navigation("AssignedTickets");
+
+                    b.Navigation("OwnedTickets");
+
+                    b.Navigation("ProjectUsers");
+
                     b.Navigation("TicketAttachments");
 
                     b.Navigation("TicketComments");

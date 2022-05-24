@@ -1,3 +1,4 @@
+using AlphaBugTracker.DAL;
 using AlphaBugTracker.Data;
 using AlphaBugTracker.Models;
 using Microsoft.AspNetCore.Identity;
@@ -5,18 +6,23 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IRepository<Project>, ProjectRepository>();
+builder.Services.AddScoped<IRepository<Ticket>, TicketRepository>();
+builder.Services.AddScoped<IRepository<Users>, UserRepository>();
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<Users>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>() //add IdentityRole to the service
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
 
 //SeedData
 using (var scope = app.Services.CreateScope())

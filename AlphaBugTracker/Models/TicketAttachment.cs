@@ -9,7 +9,7 @@ namespace AlphaBugTracker.Models
         public string FilePath { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public IdentityUser UserCreator { get; set; }
+        public Users UserCreator { get; set; }
         public string FileUrl { get; set; }
     }
 }
